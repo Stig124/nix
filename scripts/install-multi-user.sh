@@ -596,7 +596,7 @@ EOF
 }
 
 shell_source_lines() {
-    cat <<EOF
+TEXT=$(cat <<EOF
 
 # Nix
 if [ -e '$PROFILE_NIX_FILE' ]; then
@@ -605,6 +605,7 @@ fi
 # End Nix
 
 EOF
+)
 }
 
 configure_shell_profile() {
@@ -624,7 +625,7 @@ configure_shell_profile() {
         if [ -e "$profile_target" ]; then
             shell_source_lines \
                 | _sudo "extend your $profile_target with nix-daemon settings" \
-                        tee -a "$profile_target"
+                        echo "$TEXT$(cat $profile_target)" > $profile_target
         fi
     done
 }
