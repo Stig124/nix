@@ -13,7 +13,7 @@ for your platform:
 - multi-user on macOS
 
   > **Notes on read-only filesystem root in macOS 10.15 Catalina +**
-  > 
+  >
   > - It took some time to support this cleanly. You may see posts,
   >   examples, and tutorials using obsolete workarounds.
   > - Supporting it cleanly made macOS installs too complex to qualify
@@ -75,12 +75,12 @@ should run this under your usual user account, *not* as root. The script
 will invoke `sudo` as needed.
 
 > **Note**
-> 
+>
 > If you need Nix to use a different group ID or user ID set, you will
 > have to download the tarball manually and [edit the install
 > script](#installing-from-a-binary-tarball).
 
-The installer will modify `/etc/bashrc`, and `/etc/zshrc` if they exist.
+The installer will modify `/etc/bashrc` *or `/etc/bash.bashrc`*, and `/etc/zshrc` *or `/etc/zsh/zshrc`*, if they exist.
 The installer will first back up these files with a `.backup-before-nix`
 extension. The installer will also create `/etc/profile.d/nix.sh`.
 
@@ -101,8 +101,7 @@ sudo launchctl unload /Library/LaunchDaemons/org.nixos.nix-daemon.plist
 sudo rm /Library/LaunchDaemons/org.nixos.nix-daemon.plist
 ```
 
-There may also be references to Nix in `/etc/profile`, `/etc/bashrc`,
-and `/etc/zshrc` which you may remove.
+There may also be references to Nix in `/etc/profile`, `/etc/bashrc` / `/etc/bash.bashrc` *whichever exists*, and `/etc/zshrc` / `/etc/zsh/zshrc` which you may remove.
 
 # macOS Installation <a name="sect-macos-installation-change-store-prefix"></a><a name="sect-macos-installation-encrypted-volume"></a><a name="sect-macos-installation-symlink"></a><a name="sect-macos-installation-recommended-notes"></a>
 <!-- Note: anchors above to catch permalinks to old explanations -->
